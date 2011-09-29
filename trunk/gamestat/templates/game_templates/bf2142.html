@@ -1,0 +1,224 @@
+<{if $block.svronline}>
+	<!-- Overview -->
+	<div style='width: 625px;'>
+		<div style='text-align: left; height: 20px;'>
+			<{if $block.gamestat.password == 1}>
+				<div style='height: 16px; float: left; padding-top: 2px;'>
+					<img src='<{xoAppUrl /}>modules/gamestat/images/locked.gif' alt='<{$smarty.const._MB_SERVER_LOGGED}>' width='16px' height='16px' />
+				</div>
+			<{/if}>
+			<div style='font-weight: bold; float: left; padding-top: 2px;'><{$block.gamestat.hostname}></div>
+		</div>
+		<!-- Server Info -->
+		<div style='text-align: left;'>
+			<!--  Map Image -->
+			<div style='width: 322px; height: 258px; float: left;'>
+				<div style='position: absolute; z-index: 10;'>
+					<{assign var=mapname value="images/games/"|cat:$block.game|cat:"/mods/"|cat:$block.gamestat.gamevariant|cat:"/maps/"|cat:$block.gamestat.mapname|replace:' ':'_'|lower|cat:".png"}>
+					<{if $mapname|file_exists}>
+						<img style='width: 320px; height: 256px; border: 1px solid #000000;' src='<{xoAppUrl /}>modules/gamestat/images/games/<{$block.game}>/mods/<{$block.gamestat.gamevariant}>/maps/<{$block.gamestat.mapname|replace:" ":"_"|lower}>.png' alt='<{$block.gamestat.mapname|replace:" ":"_"|lower}>.png' />
+					<{else}>
+						<img style='width: 320px; height: 256px; border: 1px solid #000000;' src='<{xoAppUrl /}>modules/gamestat/images/noimage.png' alt='<{$smarty.const._MB_SERVER_NO_MAP_IMAGE}>' />
+					<{/if}>
+					<div style='position: absolute; z-index: 1; top: 1px; left: 1px;'>
+						<img src='<{xoAppUrl /}>modules/gamestat/images/map_border.png' alt='map_border.png' width='320px' height='256px'/>
+						<div style='position: absolute; z-index: 2; top: 5px; left: 5px;'>
+							<img src='<{xoAppUrl /}>modules/gamestat/images/icons/<{$block.game}>_64.png' alt='<{$smarty.const._MB_SERVER_MOD_BF2142_BF2142}> <{$smarty.const._MB_GRAPHICS_BY}> Sascha Drux' width='64px' height='64px'/>
+						</div>
+						<div style='position: absolute; z-index: 3; bottom: 9px; right: 4px;'>
+							<span style='color: #000000; font-size: 12px;'><{$block.gamestat.mapname|upper|replace:'_':' '}></span>
+						</div>
+						<div style='position: absolute; z-index: 4; bottom: 10px; right: 5px;'>
+							<span style='color: #ffffff; font-size: 12px;'><{$block.gamestat.mapname|upper|replace:'_':' '}></span>
+						</div>
+						<div style='position: absolute; z-index: 5; top: 10px; right: 5px;'>
+							<{assign var=team1 value="images/games/"|cat:$block.game|cat:"/mods/"|cat:$block.gamestat.gamevariant|cat:"/icons/"|cat:$block.gamestat.bf2142_team1|lower|cat:".jpg"}>
+							<{assign var=team2 value="images/games/"|cat:$block.game|cat:"/mods/"|cat:$block.gamestat.gamevariant|cat:"/icons/"|cat:$block.gamestat.bf2142_team2|lower|cat:".jpg"}>
+							<{if $team1|file_exists}>
+								<img img src='<{xoAppUrl /}>modules/gamestat/images/games/<{$block.game}>/mods/<{$block.gamestat.gamevariant}>/icons/<{$block.gamestat.bf2142_team1|lower}>.jpg' alt='<{$block.gamestat.bf2142_team1}> <{$smarty.const._MB_SERVER_TEAM_FLAG}>' width='16px' height='11px' style='border: 1px solid #000000;' />
+							<{/if}>
+							<{if $team2|file_exists}>
+								<img img src='<{xoAppUrl /}>modules/gamestat/images/games/<{$block.game}>/mods/<{$block.gamestat.gamevariant}>/icons/<{$block.gamestat.bf2142_team2|lower}>.jpg' alt='<{$block.gamestat.bf2142_team2}> <{$smarty.const._MB_SERVER_TEAM_FLAG}>' width='16px' height='11px' style='border: 1px solid #000000;' />
+							<{/if}>
+						</div>
+						<div style='position: absolute; z-index: 6; top: 0px; right: 0px;'>
+							<img src='<{xoAppUrl /}>modules/gamestat/images/blank.png' alt='' width='320px' height='256px'/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Server Data -->
+			<div style='height: 275px;'>
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_IP}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.gq_address}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_PORT}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.hostport}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_RANKED}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> 	<{if $block.gamestat.bf2142_ranked == 1}>
+																									<{$smarty.const._MB_SERVER_YES}>
+																								<{else}>
+																									<{$smarty.const._MB_SERVER_NO}>
+																								<{/if}>
+				</div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_GAME_VERSION}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.gamever}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_CURRENT_MOD}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'>  	<{assign var=gamevariant_self value=$block.gamestat.gamevariant|upper}>
+																								<{assign var=gamevariant_upper_self value="_MB_SERVER_MOD_BF2142_"|cat:$gamevariant_self}>
+																								<{$smarty.const.$gamevariant_upper_self}>
+				</div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_MODE}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'>	<{assign var=gametype_self value=$block.gamestat.gametype|upper}>
+																								<{assign var=gametype_upper_self value="_MB_SERVER_MOD_GAMETYPE_"|cat:$gamevariant_self|cat:"_"|cat:$gametype_self}>
+																								<{$smarty.const.$gametype_upper_self}>
+				</div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_CURRENT_MAP}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.mapname|replace:'_':' '}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_TEAM_1}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.bf2142_team1}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_TEAM_2}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.bf2142_team2}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_MAX_PLAYER}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.maxplayers}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_CURRENT_PLAYER}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.numplayers}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_ROUNDS}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.roundtime}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_TIMELIMIT}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{if $block.gamestat.timelimit == 0}>
+																								<{$smarty.const._MB_SERVER_TIMELIMIT_NO}>
+																							 <{else}>
+																								<{$block.gamestat.timelimit}> <{$smarty.const._MB_SERVER_TIMELIMIT_MINUTE}>
+																							 <{/if}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_AUTOBALACE}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'>	<{if $block.gamestat.bf2142_autobalanced == 1}>
+																									<{$smarty.const._MB_SERVER_YES}>
+																								<{else}>
+																									<{$smarty.const._MB_SERVER_NO}>
+																								<{/if}>
+				</div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_FRIENDLY_FIRE}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'>	<{if $block.gamestat.bf2142_friendlyfire == 1}>
+																									<{$smarty.const._MB_SERVER_YES}>
+																								<{else}>
+																									<{$smarty.const._MB_SERVER_NO}>
+																								<{/if}>
+				</div>
+			</div>
+		</div>
+		<!-- Player List -->
+		<div style='text-align: left;'>
+			<{if $block.playercount > 0}>
+				<!-- head -->
+				<div style='width: 305px; height: 35px; float: left; text-align: center;'>
+					<{assign var=counter_team1 value=0}>
+					<{foreach item=list from=$block.gamestat.players}>
+						<{if $list.team_ == 1 && $list.player_}>
+							<{assign var=counter_team1 value=$counter_team1+1}>
+						<{/if}>
+					<{/foreach}>
+					<{if $team1|file_exists}>
+						<img src='<{xoAppUrl /}>modules/gamestat/images/games/<{$block.game}>/mods/<{$block.gamestat.gamevariant}>/icons/<{$block.gamestat.bf2142_team1|lower}>.jpg' alt='<{$block.gamestat.bf2142_team1}> <{$smarty.const._MB_SERVER_TEAM_FLAG}>' width='16px' height='11px' style='border: 1px solid #000000;' />
+						<div style='font-size: 10px;'>						
+							<{$counter_team1}> <{$smarty.const._MB_SERVER_PLAYER}>
+						</div>
+					<{else}>
+						<div style='font-size: 10px;'>						
+							<{$counter_team1}> <{$smarty.const._MB_SERVER_PLAYER}>
+						</div>
+					<{/if}>
+				</div>
+				<div style='width: 15px; float: left;'>&nbsp;</div>
+				<div style='width: 305px; float: left; text-align: center;'>
+					<{assign var=counter_team2 value=0}>
+					<{foreach item=list from=$block.gamestat.players}>
+						<{if $list.team_ == 2 && $list.player_}>
+							<{assign var=counter_team2 value=$counter_team2+1}>
+						<{/if}>
+					<{/foreach}>
+					<{if $team2|file_exists}>
+						<img src='<{xoAppUrl /}>modules/gamestat/images/games/<{$block.game}>/mods/<{$block.gamestat.gamevariant}>/icons/<{$block.gamestat.bf2142_team2|lower}>.jpg' alt='<{$block.gamestat.bf2142_team2}> <{$smarty.const._MB_SERVER_TEAM_FLAG}>' width='16px' height='11px' style='border: 1px solid #000000;' />
+						<div style='font-size: 10px;'>						
+							<{$counter_team2}> <{$smarty.const._MB_SERVER_PLAYER}>
+						</div>
+					<{else}>
+						<div style='font-size: 10px;'>						
+							<{$counter_team2}> <{$smarty.const._MB_SERVER_PLAYER}>
+						</div>
+					<{/if}>
+				</div>
+				<br style='clear: both;' />
+				<div style='width: 305px; float: left; text-align: center;'>
+					<div style='float: left; text-align: left; font-size: 10px; width: 165px;'><{$smarty.const._MB_SERVER_PLAYER_NAME}></div>
+					<div style='float: left; text-align: right; font-size: 10px; width: 40px;'><{$smarty.const._MB_SERVER_PLAYER_SCORE}></div>
+					<div style='float: left; text-align: right; font-size: 10px; width: 30px;'><{$smarty.const._MB_SERVER_PLAYER_KILLS}></div>
+					<div style='float: left; text-align: right; font-size: 10px; width: 40px;'><{$smarty.const._MB_SERVER_PLAYER_DEATH}></div>
+					<div style='float: left; text-align: right; font-size: 10px; width: 30px;'><{$smarty.const._MB_SERVER_PLAYER_PING}></div>
+				</div>
+				<div style='float: left; text-align: center; font-size: 10px; width: 15px;'>&nbsp;</div>
+				<div style='width: 305px; float: left; text-align: center;'>
+					<div style='float: left; text-align: left; font-size: 10px; width: 165px;'><{$smarty.const._MB_SERVER_PLAYER_NAME}></div>
+					<div style='float: left; text-align: right; font-size: 10px; width: 40px;'><{$smarty.const._MB_SERVER_PLAYER_SCORE}></div>
+					<div style='float: left; text-align: right; font-size: 10px; width: 30px;'><{$smarty.const._MB_SERVER_PLAYER_KILLS}></div>
+					<div style='float: left; text-align: right; font-size: 10px; width: 40px;'><{$smarty.const._MB_SERVER_PLAYER_DEATH}></div>
+					<div style='float: left; text-align: right; font-size: 10px; width: 30px;'><{$smarty.const._MB_SERVER_PLAYER_PING}></div>
+				</div>
+				<!-- Team 1 -->
+				<div style='width: 305px; float: left;'>
+					<{foreach item=list from=$block.gamestat.players}>
+						<{if $list.team_ == 1 && $list.player_}>
+							<div style='float: left; text-align: left; font-size: 10px; width: 165px;'><a href='<{$smarty.const._MB_SERVER_PLAYERSTATS_BF2142_URL}><{$list.pid_}>+stats.html' target='_blank'><{$list.player_|escape:"htmlall"}></a></div>
+							<div style='float: left; text-align: right; font-size: 10px; width: 40px;'><{if $list.score_}><{$list.score_}><{else}>0<{/if}></div>
+							<div style='float: left; text-align: right; font-size: 10px; width: 30px;'><{$list.skill_}></div>
+							<div style='float: left; text-align: right; font-size: 10px; width: 40px;'><{$list.deaths_}></div>
+							<div style='float: left; text-align: right; font-size: 10px; width: 30px;'><{$list.ping_}></div>
+							<br />
+						<{elseif $list.team_ == 2 && $block.gamestat.numplayers == 1}>
+							<div style='float: left; text-align: left; font-size: 10px; width: 305px;'>&nbsp;</div>
+						<{/if}>
+					<{/foreach}>
+				</div>
+				<div style='float: left; text-align: right; font-size: 10px; width: 15px;'>&nbsp;</div>
+				<!-- Team 2 -->
+				<div style='width: 305px; float: left;'>
+					<{foreach item=list from=$block.gamestat.players}>
+						<{if $list.team_ == 2 && $list.player_}>
+							<div style='float: left; text-align: left; font-size: 10px; width: 165px;'><a href='<{$smarty.const._MB_SERVER_PLAYERSTATS_BF2142_URL}><{$list.pid_}>+stats.html' target='_blank'><{$list.player_|escape:"htmlall"}></a></div>
+							<div style='float: left; text-align: right; font-size: 10px; width: 40px;'><{if $list.score_}><{$list.score_}><{else}>0<{/if}></div>
+							<div style='float: left; text-align: right; font-size: 10px; width: 30px;'><{$list.skill_}></div>
+							<div style='float: left; text-align: right; font-size: 10px; width: 40px;'><{$list.deaths_}></div>
+							<div style='float: left; text-align: right; font-size: 10px; width: 30px;'><{$list.ping_}></div>
+							<br />
+						<{elseif $list.team_ == 1 && $block.gamestat.numplayers == 1}>
+							<div style='float: left; text-align: left; font-size: 10px; width: 305px;'>&nbsp;</div>
+						<{/if}>
+					<{/foreach}>
+				</div>
+			<{/if}>
+		</div>
+	</div>
+	<br style='clear: both;' />
+<{else}>
+	<div style='width: 625px; text-align: center;'>
+		<div>
+			<img src='<{xoAppUrl /}>modules/gamestat/images/icons/<{$block.game}>_128.png' alt='<{$smarty.const._MB_SERVER_MOD_BF2142_BF2142}> <{$smarty.const._MB_GRAPHICS_BY}> Sascha Drux' width='128px' height='128px'/>
+			<br /><br />
+			<b><{$smarty.const._MB_GAMESTAT_BLOCK_STATUS}></b><br /><img src='<{xoAppUrl /}><{$smarty.const._MB_GAMESTAT_SVROFFLINE_IMG }>' alt='<{$block.svrstatustxt}>' width='150px' height='22px' />
+			<br>   
+		</div>
+	</div>
+<{/if}>

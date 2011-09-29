@@ -1,0 +1,17 @@
+<{if $block.error == 1}>
+
+<{$smarty.const._MB_GAMESTAT_BLOCK_ERROR}> <{$block.errormsg}><br>
+
+<{else}>
+
+<{include file=$block.gametemplate}>
+
+<{if $block.verbose == 1}>
+<hr>
+<h3><{$smarty.const._MB_GAMESTAT_BLOCK_ARRAY}></h3>
+<pre>
+<{$block.verbosedata}>
+</pre>
+<{/if}>
+
+<{/if}>

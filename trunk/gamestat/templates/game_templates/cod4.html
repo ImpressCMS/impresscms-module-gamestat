@@ -1,0 +1,93 @@
+<{if $block.svronline}>
+	<!-- Overview -->
+	<div style='width: 625px;'>
+		<div style='text-align: left; height: 20px;'>
+			<{if $block.gamestat.pswrd == 1}>
+				<div style='height: 16px; float: left; padding-top: 2px;'>
+					<img src='<{xoAppUrl /}>modules/gamestat/images/locked.gif' alt='<{$smarty.const._MB_SERVER_LOGGED}>' width='16px' height='16px' />
+				</div>
+			<{/if}>
+			<div style='font-weight: bold; float: left; padding-top: 2px;'><{$block.gamestat.hostname}></div>
+		</div>
+		<!-- Server Info -->
+		<div style='text-align: left;'>
+			<!--  Map Image -->
+			<div style='width: 322px; height: 258px; float: left;'>
+				<div style='position: absolute; z-index: 10;'>
+					<{assign var=mapname value="images/games/"|cat:$block.game|cat:"/mods/"|cat:$block.gamestat.gamevariant|cat:"/maps/"|cat:$block.gamestat.mapname|replace:' ':'_'|lower|cat:".png"}>
+					<{if $mapname|file_exists}>
+						<img style='width: 320px; height: 256px; border: 1px solid #000000;' src='<{xoAppUrl /}>modules/gamestat/images/games/<{$block.game}>/mods/<{$block.gamestat.gamevariant}>/maps/<{$block.gamestat.mapname|replace:" ":"_"|lower}>.png' alt='<{$block.gamestat.mapname|replace:" ":"_"|lower}>.png' />
+					<{else}>
+						<img style='width: 320px; height: 256px; border: 1px solid #000000;' src='<{xoAppUrl /}>modules/gamestat/images/noimage.png' alt='<{$smarty.const._MB_SERVER_NO_MAP_IMAGE}>' />
+					<{/if}>
+					<div style='position: absolute; z-index: 1; top: 1px; left: 1px;'>
+						<img src='<{xoAppUrl /}>modules/gamestat/images/map_border.png' alt='map_border.png' width='320px' height='256px'/>
+						<div style='position: absolute; z-index: 2; top: 5px; left: 5px;'>
+							<img src='<{xoAppUrl /}>modules/gamestat/images/icons/<{$block.game}>_64.png' alt='<{$smarty.const._MB_SERVER_MOD_COD4_COD4}> <{$smarty.const._MB_GRAPHICS_BY}> Sascha Drux' width='64px' height='64px'/>
+						</div>
+						<div style='position: absolute; z-index: 3; bottom: 9px; right: 4px;'>
+							<span style='color: #000000; font-size: 12px;'><{$block.gamestat.mapname|upper|replace:'_':' '}></span>
+						</div>
+						<div style='position: absolute; z-index: 4; bottom: 10px; right: 5px;'>
+							<span style='color: #ffffff; font-size: 12px;'><{$block.gamestat.mapname|upper|replace:'_':' '}></span>
+						</div>
+						<div style='position: absolute; z-index: 6; top: 0px; right: 0px;'>
+							<img src='<{xoAppUrl /}>modules/gamestat/images/blank.png' alt='' width='320px' height='256px'/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Server Data -->
+			<div style='height: 275px;'>
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_IP}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.gq_address}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_PORT}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.gq_port}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_GAME_VERSION}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.shortversion}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_GAME_TYPE}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.gametype|upper}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_CURRENT_MAP}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.mapname|replace:'_':' '|capitalize}></div>
+				<br />
+				<div style='width: 130px; float: left; padding-left: 5px; margin-left: 5px ; font-size: 10px; font-weight: bold;'><{$smarty.const._MB_SERVER_MAX_PLAYER}></div>
+				<div style='width: 130px; float: left; padding-left: 5px; font-size: 10px;'> <{$block.gamestat.sv_maxclients}></div>
+				<br />
+			</div>
+		</div>
+		<!-- Player List -->
+		<div style='text-align: left;'>
+			<{if $block.playercount > 0}>
+				<!-- head -->
+				<div style='width: 625px; float: left; text-align: center;'>
+					<div style='float: left; text-align: left; font-size: 10px; width: 330px;'><{$smarty.const._MB_SERVER_PLAYER_NAME}></div>
+					<div style='float: left; text-align: right; font-size: 10px; width: 180px;'><{$smarty.const._MB_SERVER_PLAYER_FRAGS}></div>
+					<div style='float: left; text-align: right; font-size: 10px; width: 70px;'><{$smarty.const._MB_SERVER_PLAYER_PING}></div>
+				</div>
+				<!-- Player-->
+				<div style='width: 625px; float: left;'>
+					<{foreach item=list from=$block.gamestat.players}>
+						<div style='float: left; text-align: left; font-size: 10px; width: 330px;'><{$list.nick|escape:"htmlall"}></div>
+						<div style='float: left; text-align: right; font-size: 10px; width: 180px;'><{if $list.frags}><{$list.frags}><{else}>0<{/if}></div>
+						<div style='float: left; text-align: right; font-size: 10px; width: 70px;'><{$list.ping}></div>
+						<br />
+					<{/foreach}>
+				</div>
+			<{/if}>
+		</div>
+	</div>
+	<br style='clear: both;' />
+<{else}>
+	<div style='width: 625px; text-align: center;'>
+		<div>
+			<img src='<{xoAppUrl /}>modules/gamestat/images/icons/<{$block.game}>_128.png' alt='<{$smarty.const._MB_SERVER_MOD_UT3_UT3}> <{$smarty.const._MB_GRAPHICS_BY}> Sascha Drux' width='128px' height='128px'/>
+			<br /><br />
+			<b><{$smarty.const._MB_GAMESTAT_BLOCK_STATUS}></b><br /><img src='<{xoAppUrl /}><{$smarty.const._MB_GAMESTAT_SVROFFLINE_IMG }>' alt='<{$block.svrstatustxt}>' width='150px' height='22px' />
+			<br>   
+		</div>
+	</div>                                                                                             
+<{/if}>

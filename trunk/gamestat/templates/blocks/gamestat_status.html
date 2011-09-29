@@ -1,0 +1,16 @@
+<{if $block.error == 1}>
+
+<{$smarty.const._MB_GAMESTAT_BLOCK_ERROR}> <{$block.errormsg}><br>
+
+<{else}>
+<center>
+<b><{$block.game}></b><br>
+<img src="<{$block.svrstatusimg}>" alt="<{$block.svrstatustxt}>" ><br>
+<{if $block.svronline}>
+  <b><{$smarty.const._MB_GAMESTAT_BLOCK_MAP}></b> <{$block.mapname}><br>
+  <hr>
+  <{$block.playerstatus}>
+<{/if}>
+</center>
+
+<{/if}>

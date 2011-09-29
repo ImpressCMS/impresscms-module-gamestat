@@ -1,0 +1,137 @@
+gamestat :: changelog.txt
+
+==[ Version 1.01 Final]====[ 2009.xx.xx ]==
+Fixes:
+* better english translation on block.php
+
+
+
+==[ Version 1.01 RC]====[ 2009.05.16 ]==
+Changes:
+* Icons for ImpressCMS
+* New Templates
+* New Game Icons (different sizes) 
+* New Icons for Server Status (Offline/Online)
+* A many more language variables
+Adds:
+* NEW: Administration
+* German language added
+* ImpressCMS Blocks Manager
+* Gamelist parsis from list.php
+Fixes:
+* icms_version.php
+* menu_index.png corrected
+* Updated modulename to "GameStat"
+
+...and a lot more!
+
+
+
+
+
+==[ Version 0.08 ]====[ 2009.03.08 ]==
+
+Adds:
+* Templates / COD4: New template added by request.  Icon by 3xhumed.
+
+Changes:
+* Module: Updated module name to "UHQ_GameStat".
+* Module: Update GameQ to v1.05 (2009-03-05)
+* Templates / BF2142 : Added more information to the output.  New icon by Sev7en.
+* Templates / UT : Updated icon to 256x256 image by 3xhumed.
+* Templates / UT3 : Updated icon to 256x256 image by Th3-Prophetman.
+
+==[ version 0.07 ]====[ 2008.09.18 ]==
+
+Adds:
+* Admin: Added icon for EXM menu users, even though it doesn't do much at this time.
+
+Fixes:
+* Admin: Forgot to add the external definition for the admin index menu.  Sorry.
+
+Changes:
+* Module: Updated GameQ to v1.01 (2008-09-15).
+* Templates / BF2142: Fixed a condition where teams were only shown if a team array did not exist.
+* Templates / UT3: Only show player and team arrays if there is player info available.
+
+==[ version 0.06 ]====[ 2008.09.04 ]==
+
+Adds:
+* Templates / BF2142: Add support for Battlefield 2142!
+* Admin: Support under EXM menu structure in XOOPS 2.3/ImpressCMS.
+
+Changes:
+* Module: Renamed directory to uhq_gamestat, for better coding practice.  This should not change again.
+* Module: Updated logo to XOOPS 2.3 standards.  Now features a controller instead of the UT logo.
+* Module: Did a couple of code cleanup items to eliminate some errors.
+
+==[ Version 0.05 ]====[ 2008.08.08 ]==
+
+Adds:
+* Templates / UT3: Add support for Unreal Tournament 3!
+  Please note that server versions less than 3590 will not report player or team statistics.
+
+Changes:
+* Blocks: Fixed a bug where one player would display as plural.
+* Blocks: Grab the actual player count if the query provides it, and count the player array only if this variable is absent.
+* Blocks / Status: Updates to populate block from differing source info.
+
+* Templates / UT: More fields are supported.  I don't quite know how I want to display the team variables, however.
+* Templates / Generic: Fleshed out a few more general options more for unsupported game types.
+
+* Updated module logo to use the 9pt Bit3 font.  It's not a 10-point as I had originally thought.
+
+Notes:
+* Version 0.04 was actually released on 2008-08-06.  Updated the changelog to reflect that.
+
+* This is not a typical release cycle.  I must be on some kind of coding crack at the moment.
+
+
+==[ Version 0.04 ]====[ 2008.08.06 ]==
+
+Adds:
+* Blocks / SrvInfo: A largely game-agnostic block which relies on templates to process the output for any given type of game.
+* hasMain set to 1.  Updated root index.php accordingly.  We need a place to put the verbose info block.  There is no place better than the GameStat main page!  However, there are no real functions in this block at this time.
+
+Games:
+* More complete support for Unreal Tournament.
+
+Changes:
+* Fix so that general module configuration can actually be changed.
+* Restored a few skeletal files for future use.
+* Image references are absolute to the web root, and not relative.
+* Changed text in block templates to smarty, referencing the language definitions.
+
+Notes:
+* While GameQ can poll a large number of games, the output for certain fields is likely to vary depending on the engine.  Templates for individual games will be constructed on a requested basis.
+
+==[ version 0.03 ]====[ 2008.08.01 ]==
+
+Adds:
+* Blocks / Status: Added gametype, ipfqdn, port # to the block configuration.
+
+Changes:
+* General Configuration: Removed gametype, ipfqdn, port #.
+* Blocks / Status: Fixed a couple typos.
+* Blocks / Status: Show no additional details if the server is offline.
+
+==[ version 0.02 ]====[ 2008.04.05 ]==
+
+Adds:
+* Using GameQ Version 1.0 (2008-04-01) by Tom Buskens
+  http://sourceforge.net/projects/gameq/
+* Simple online/offline status block w/ a player count if available.
+* Online/Offline images for server status (I was bored).
+* General Configuration: Added querytimeout, for all queries.
+
+Changes:
+* Spell out the port to use should be the query port, not the game port.
+
+==[ version 0.01 ]====[ 2008.03.29 ]==
+
+Adds:
+* Skeletal frame w/ logo.
+* General Configuration: gametype, serveripfqdn, serverport
+
+Notes:
+* Logo from the Unreal Anthology launcher.
